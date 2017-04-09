@@ -10,11 +10,11 @@ if("downloader" %in% rownames(installed.packages()) == FALSE){
 require(downloader)
 
 # Download data to file data/TEMP.csv
-url = 'https://smu.box.com/shared/static/vb641paqi7pemsv8ive17bimtjn3x7rj.csv'
+url = 'https://smu.box.com/shared/static/qx5akwtmmv7x7qhtdmqxqy636cq7ff2d.csv'
 download.file(url = url, destfile = file.path("data", "TEMP.csv"))
 cat("Data was downloaded successfully!\n")
 
 # Download data to file data/CityTemp.csv
-url = 'https://smu.box.com/shared/static/gx8ve1kgttetg79jbuzv4px49mcff8tq.csv'
+url = 'https://smu.box.com/shared/static/yah71zw7zxp87ebofxb6h5hs6crv7jvz.csv'
 download.file(url = url, destfile = file.path("data", "CityTemp.csv"))
 cat("Data was downloaded successfully!\n")
