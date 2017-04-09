@@ -1,6 +1,6 @@
 # DDSCaseStudy2
 
-This is a Case Study 2 project for DDS at SMU.
+This is a Case Study 2 project for DDS at SMU. 
 
 ## Instructions for running the project
 * Clone the repository:<br>
