@@ -14,6 +14,7 @@ url = 'https://smu.box.com/shared/static/vb641paqi7pemsv8ive17bimtjn3x7rj.csv'
 download.file(url = url, destfile = file.path("data", "TEMP.csv"))
 cat("Data was downloaded successfully!\n")
 
+# Download data to file data/CityTemp.csv
 url = 'https://smu.box.com/shared/static/gx8ve1kgttetg79jbuzv4px49mcff8tq.csv'
 download.file(url = url, destfile = file.path("data", "CityTemp.csv"))
 cat("Data was downloaded successfully!\n")
