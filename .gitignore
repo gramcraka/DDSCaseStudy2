@@ -36,3 +36,7 @@ vignettes/*.pdf
 *.csv
 *.html
 .Rproj.user
+
+
+# Word temporary
+~$*.doc*
