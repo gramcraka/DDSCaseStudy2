@@ -9,7 +9,7 @@ authors: Ivelin Angelov, Laura Bishop, Ethan Graham, Scott Gozdzialski
 
 
 ## Introduction
-As we are learning about Data Science we are building a tool box to help us in pour careers.  Each of these tools have differenct uses.  Some are for analysis of the data, ANOVA, t-test, and linear regression to name a few.  Some are to visualize the data and its characteristics, Scatterplots, box plot, and histograms to name a few.  Some are to get to and clean the data, Python, r, and SAS are a few of these tools.  This study will be focusing on the R programming language and what is can do for us in our careers as data scientists.
+As we are learning about Data Science we are building a tool box to help us in our careers.  Each of these tools have differenct uses.  Some are for analysis of the data, like ANOVA, t-test, and linear regression.  Others help with visualizing the data and its characteristics, like scatterplots, box plot, and histograms.  Some tools focus on retrieving and cleaning the data, like Python, R, and SAS.  This study will be focusing on the R programming language and what value R brings to the role of Data Scientist.
 
 
 ## Question 2 of the case study
@@ -32,14 +32,14 @@ myFun <- function(x) {
 cbind(Tree_Size = unique(data1$Tree),do.call(rbind, tapply(data1$circumference, data1$Tree, myFun)))
 ```
 
-Next we are going to show you some of the ways you can plot data.  We are first going to create a scatterplot of the tree cirumferance against its age.
+A scatterplot is created to show the tree circumferance as compared to age.
 
 ```{r}
 plot(data1$circumference, data1$age, xlab = "Circumference", ylab = "Age")
 print("\n") #used for formatting of the line.
 ```
 
-And the next plot is a boxplot or whiskerplot, but to make things more difficult programming wise we are going to order the plots in increasing order of maximum diameter. 
+The next plot is a boxplot or whiskerplot. By ordering the plots in increasing order of maximum diameter, this makes the plot easier to read but harder to create.  
 ```{r}
 #Reorder the Tree size factor to 3, 1, 5, 2, 4
 data1$Tree <- factor(data1$Tree, levels(data1$Tree)[c(3,1,5,2,4)])
@@ -47,3 +47,14 @@ data1$Tree <- factor(data1$Tree, levels(data1$Tree)[c(3,1,5,2,4)])
 #plot the temp data set circumference vs Tree
 boxplot(circumference ~ Tree, data = data1)
 ```
+
+Question 3 focuses on manipulating temperature data.  TEMP.csv and CityTemp.csv are very big data sets.  After cleaning, TEMP has 541,645 observations and CityTemp has 226,398.  
+
+Question 3 - (i)  ...skipping for now.
+
+In looking at US land temperatures, a data frame for UStemp was created along with an additional column for average land temperatures.
+```{r}
+UStemp <- c(subset(x=tempClean, tempClean$Date >= "1990-01-01"))
+UStemp$Monthly.AverageTemp.Land <- as.numeric()
+```
+
