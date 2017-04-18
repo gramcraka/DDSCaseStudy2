@@ -1,0 +1,61 @@
+---
+title: "Data Science and the use of R Case Study 2"
+date: "4-8-2017"
+output:
+  html_document:
+    keep_md: yes
+authors: Ivelin Angelov, Laura Bishop, Ethan Graham, Scott Gozdzialski
+---
+
+
+## Introduction
+As we are learning about Data Science we are building a tool box to help us in our careers.  Each of these tools have differenct uses.  Some are for analysis of the data, ie. ANOVA, t-test, and linear regressions to name a few.  Some are to visualize the data and its characteristics, ie. Scatterplots, box plot, and histograms to name a few.  Some are to get to and clean the data, Python, r, and SAS are a few of these tools.  This study will be focusing on the R programming language and what is can do for us in our careers as data scientists.
+
+
+## Question 2 of the case study
+For our first example we will be using a built in data set called "Orange." Using the built in data set allows us to go straight to the analysis part of the problem.
+
+The first question we are going to answer is the mean and medians for the orange trees of different sizes.
+```{r}
+# create a new data set with all the samme information as Orange
+data1 <- Orange  
+
+#Reorder the Tree size factor to 1, 2, 3, 4, 5
+data1$Tree <- factor(data1$Tree, levels(data1$Tree)[c(2,4,1,5,3)])
+
+#Create a function to print just the mean and median of the circumference
+myFun <- function(x) {
+  c(mean = mean(x), median = median(x))
+}
+
+#run the function and format it for a pretty display
+cbind(Tree_Size = unique(data1$Tree),do.call(rbind, tapply(data1$circumference, data1$Tree, myFun)))
+```
+
+Next we are going to show you some of the ways you can plot data.  We are first going to create a scatterplot of the tree cirumferance against its age.
+
+```{r}
+plot(data1$circumference, data1$age, xlab = "Circumference", ylab = "Age")
+print("\n") #used for formatting of the line.
+```
+
+And the next plot is a boxplot or whiskerplot, but to make things more difficult programming wise we are going to order the plots in increasing order of maximum diameter. 
+```{r}
+#Reorder the Tree size factor to 3, 1, 5, 2, 4
+data1$Tree <- factor(data1$Tree, levels(data1$Tree)[c(3,1,5,2,4)])
+
+#plot the temp data set circumference vs Tree
+boxplot(circumference ~ Tree, data = data1)
+```
+
+## Question 3 will be dealing with maximum and minimum monthly average temperatures 
+
+paragraphs
+
+code
+
+paragrpahs 
+
+code
+
+conclusion
