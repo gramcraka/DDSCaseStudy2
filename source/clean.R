@@ -31,10 +31,10 @@ df <- read.csv(file.path('data', "CityTemp.csv"), header=TRUE, sep=',')
 
 # keep only needed columns
 # do we only need those 3?
-df <- df[, c(1,2,5)]
+df <- df[, c(1,2,5,4)]
 
 # rename the rows
-names(df) <- c('Date', 'Temperature', 'Country')
+names(df) <- c('Date', 'Temperature', 'Country', 'City')
 
 # convert Date field to type Date
 df$Date = as.Date(df$Date, "%Y-%m-%d")
@@ -42,5 +42,6 @@ df$Date = as.Date(df$Date, "%Y-%m-%d")
 # convert 'Temperature' column to numeric tyope
 df$Temperature = as.numeric(df$Temperature)
 
-write.table(df, file.path('data', "CityTemp_clean.csv"), row.names = FALSE)
+write.table(df, file.path('data', "CityTemp_clean.csv"), row.names = TRUE)
+
 cat("CityTemp.csv was cleaned into CityTemp_clean.csv successfully!\n")
