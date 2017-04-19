@@ -15,7 +15,7 @@ In order to keep the project modular and easy to maintain, we keep the code for 
 ## Dependencies
 Before we start, we make sure all packages needed for the project are installed.
 ```{r dependencies, message=F}
-needed_packages = c('downloader', 'ggplot2', 'scales', 'Hmisc', 'lattice', 'htmlTable')
+needed_packages = c('downloader', 'ggplot2', 'scales', 'Hmisc', 'lattice', 'htmlTable', 'plyr')
 for (needed_package in needed_packages) {
   if(needed_package %in% rownames(installed.packages()) == FALSE) {
     install.packages(needed_package, repos = structure(c(CRAN = "http://cran.r-project.org")))
@@ -24,16 +24,16 @@ for (needed_package in needed_packages) {
 ```
 
 ## Download
-This taks is used for downloading of all necessary for the project csv data files.
+This taks is used for downloading of all data files, in this case happen to be in .csv format.
 The files are downloaded from their original locations as given by the assignment.
-After execution two files will be created: data/gdp.csv and data/income_groups.csv
+
 ```{r download, message=F}
 source(file.path("source", "download.R"), verbose=FALSE)
 # For details see source/download.R
 ```
 ## Tidy
-This cell will tidy the data files.
-After execution, two files will be created: data/gdp_tidy.csv and data/income_groups_tidy.csv
+This section will tidy the data files.
+REALLY??????????????????????????
 ```{r clean, message=F}
 # Cleans gdp data: 
 #   TEMP.csv -> TEMP_clean.csv

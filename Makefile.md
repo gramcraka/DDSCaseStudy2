@@ -11,7 +11,7 @@ In order to keep the project modular and easy to maintain, we keep the code for 
 Before we start, we make sure all packages needed for the project are installed.
 
 ```r
-needed_packages = c('downloader', 'ggplot2', 'scales', 'Hmisc', 'lattice', 'htmlTable')
+needed_packages = c('downloader', 'ggplot2', 'scales', 'Hmisc', 'lattice', 'htmlTable', 'plyr')
 for (needed_package in needed_packages) {
   if(needed_package %in% rownames(installed.packages()) == FALSE) {
     install.packages(needed_package, repos = structure(c(CRAN = "http://cran.r-project.org")))
@@ -20,9 +20,8 @@ for (needed_package in needed_packages) {
 ```
 
 ## Download
-This taks is used for downloading of all necessary for the project csv data files.
+This task is used for downloading of all necessary data for the project in  .csv format.
 The files are downloaded from their original locations as given by the assignment.
-After execution two files will be created: data/gdp.csv and data/income_groups.csv
 
 ```r
 source(file.path("source", "download.R"), verbose=FALSE)
@@ -37,11 +36,10 @@ source(file.path("source", "download.R"), verbose=FALSE)
 # For details see source/download.R
 ```
 ## Tidy
-This cell will tidy the data files.
-After execution, two files will be created: data/gdp_tidy.csv and data/income_groups_tidy.csv
+This section tidys up the data
 
 ```r
-# Cleans gdp data: 
+# Cleans TEMP-rature data: 
 #   TEMP.csv -> TEMP_clean.csv
 #   CityTemp.csv -> CityTemp_clean.csv
 source(file.path("source", "clean.R"), verbose=FALSE)
