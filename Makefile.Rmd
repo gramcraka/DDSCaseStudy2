@@ -26,14 +26,12 @@ for (needed_package in needed_packages) {
 ## Download
 This taks is used for downloading of all data files, in this case happen to be in .csv format.
 The files are downloaded from their original locations as given by the assignment.
-
 ```{r download, message=F}
 source(file.path("source", "download.R"), verbose=FALSE)
 # For details see source/download.R
 ```
 ## Tidy
-This section will tidy the data files.
-REALLY??????????????????????????
+This cell will tidy the data files.
 ```{r clean, message=F}
 # Cleans gdp data: 
 #   TEMP.csv -> TEMP_clean.csv

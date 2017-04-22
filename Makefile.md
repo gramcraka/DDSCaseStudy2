@@ -20,8 +20,9 @@ for (needed_package in needed_packages) {
 ```
 
 ## Download
-This task is used for downloading of all necessary data for the project in  .csv format.
+This taks is used for downloading of all data files, in this case happen to be in .csv format.
 The files are downloaded from their original locations as given by the assignment.
+
 
 ```r
 source(file.path("source", "download.R"), verbose=FALSE)
@@ -36,10 +37,11 @@ source(file.path("source", "download.R"), verbose=FALSE)
 # For details see source/download.R
 ```
 ## Tidy
-This section tidys up the data
+This section will tidy the data files.
+REALLY??????????????????????????
 
 ```r
-# Cleans TEMP-rature data: 
+# Cleans gdp data: 
 #   TEMP.csv -> TEMP_clean.csv
 #   CityTemp.csv -> CityTemp_clean.csv
 source(file.path("source", "clean.R"), verbose=FALSE)
