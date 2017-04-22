@@ -31,19 +31,28 @@ cat("Temp.csv was cleaned into TEMP_clean.csv successfully!\n")
 dfCity <- read.csv(file.path('data', "CityTemp.csv"), header=TRUE, sep=',', stringsAsFactors = FALSE)
 
 # keep only needed columns
-# do we only need those 3?
 dfCity <- dfCity[, c(1,2,5,4)]
 
-# remove nan rows
-dfCity <- na.omit(dfCity)
-tail(dfCity)
 # rename the rows
 names(dfCity) <- c('Date', 'Temperature', 'Country', 'City')
 
-# leave Date as character in order to get search to align.
+# convert to date
+# convert Date field to type Date
 dfCity$Date = as.character(dfCity$Date)
+# work on rows with '-' in date
+dash_rows = grep('-', dfCity$Date)
+dfCity$Date[dash_rows] = as.character(as.Date(dfCity$Date[dash_rows], "%Y-%m-%d"))
+# work on rows with '/' in date
+slash_rows = grep('/', dfCity$Date)
+dfCity$Date[slash_rows] = as.character(as.Date(dfCity$Date[slash_rows], "%d/%m/%Y"))
+# convert to type Date
+dfCity$Date = as.Date(dfCity$Date)
+
 # convert 'Temperature' column to numeric tyope
 dfCity$Temperature = as.numeric(dfCity$Temperature)
+
+# remove nan rows
+dfCity <- na.omit(dfCity)
 
 write.table(dfCity, file.path('data', "CityTemp_clean.csv"), row.names = FALSE, sep=',')
 
