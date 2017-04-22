@@ -1,8 +1,8 @@
 # Makefile
 Ivelin Angelov, Laura Bishop, Ethan Graham, Scott Gozdzialski  
 # This is the project's Makefile.
-This file will execute the tasks: dependencies, download, clean, merge and render
-All tasks are in separate cells and represent steps towards the final data analysis of the "Case Study 1" prject.
+This file will execute the tasks: dependencies, download, clean and render
+All tasks are in separate cells and represent steps towards the final data analysis of the "Case Study 2" prject.
 In order to keep the project modular and easy to maintain, we keep the code for all tasks into separate R files.
 
 #### <font color='red'>In order to Knit this file you need to have R Working Directory set to the root of the project.</font>
@@ -18,7 +18,6 @@ for (needed_package in needed_packages) {
   }
 }
 ```
-
 ## Download
 This taks is used for downloading of all data files, in this case happen to be in .csv format.
 The files are downloaded from their original locations as given by the assignment.
@@ -72,111 +71,93 @@ rmarkdown::render("Analysis.Rmd")
 ## 
 ## 
   |                                                                       
-  |......                                                           |  10%
+  |.......                                                          |  11%
 ## label: unnamed-chunk-1
 ## 
   |                                                                       
-  |.........                                                        |  14%
+  |..........                                                       |  16%
 ##   ordinary text without R code
 ## 
 ## 
   |                                                                       
-  |............                                                     |  19%
+  |..............                                                   |  21%
 ## label: unnamed-chunk-2
 ```
 
 ```
 ## 
   |                                                                       
-  |...............                                                  |  24%
+  |.................                                                |  26%
 ##   ordinary text without R code
 ## 
 ## 
   |                                                                       
-  |...................                                              |  29%
+  |.....................                                            |  32%
 ## label: unnamed-chunk-3
 ```
 
 ```
 ## 
   |                                                                       
-  |......................                                           |  33%
+  |........................                                         |  37%
 ##   ordinary text without R code
 ## 
 ## 
   |                                                                       
-  |.........................                                        |  38%
+  |...........................                                      |  42%
 ## label: unnamed-chunk-4
 ## 
   |                                                                       
-  |............................                                     |  43%
+  |...............................                                  |  47%
 ##   ordinary text without R code
 ## 
 ## 
   |                                                                       
-  |...............................                                  |  48%
+  |..................................                               |  53%
 ## label: unnamed-chunk-5
 ## 
   |                                                                       
-  |..................................                               |  52%
+  |......................................                           |  58%
 ##   ordinary text without R code
 ## 
 ## 
   |                                                                       
-  |.....................................                            |  57%
+  |.........................................                        |  63%
 ## label: unnamed-chunk-6
 ```
 
 ```
 ## 
   |                                                                       
-  |........................................                         |  62%
+  |............................................                     |  68%
 ##   ordinary text without R code
 ## 
 ## 
   |                                                                       
-  |...........................................                      |  67%
+  |................................................                 |  74%
 ## label: unnamed-chunk-7
 ## 
   |                                                                       
-  |..............................................                   |  71%
+  |...................................................              |  79%
 ##   ordinary text without R code
 ## 
 ## 
   |                                                                       
-  |..................................................               |  76%
+  |.......................................................          |  84%
 ## label: unnamed-chunk-8
 ## 
   |                                                                       
-  |.....................................................            |  81%
-##   ordinary text without R code
-## 
-## 
-  |                                                                       
-  |........................................................         |  86%
-## label: unnamed-chunk-9 (with options) 
-## List of 5
-##  $ echo      : logi FALSE
-##  $ fig.height: num 5
-##  $ fig.width : num 3.5
-##  $ fig.show  : chr "hold"
-##  $ out.extra : chr "style=\"float:left\""
-```
-
-```
-## 
-  |                                                                       
-  |...........................................................      |  90%
+  |..........................................................       |  89%
 ##   ordinary text without R code
 ## 
 ## 
   |                                                                       
   |..............................................................   |  95%
-## label: unnamed-chunk-10 (with options) 
+## label: unnamed-chunk-9 (with options) 
 ## List of 5
 ##  $ echo      : logi FALSE
 ##  $ fig.height: num 5
-##  $ fig.width : num 3.5
+##  $ fig.width : num 4
 ##  $ fig.show  : chr "hold"
 ##  $ out.extra : chr "style=\"float:left\""
 ```
@@ -188,7 +169,7 @@ rmarkdown::render("Analysis.Rmd")
 ##   ordinary text without R code
 ## 
 ## 
-## /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc +RTS -K512m -RTS Analysis.utf8.md --to html --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output Analysis.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /Library/Frameworks/R.framework/Versions/3.3/Resources/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /var/folders/df/2w6dv0r11pb69jhk8lzjjb_m0000gn/T//RtmpyNtMEj/rmarkdown-str3e377a17fc3b.html --mathjax --variable 'mathjax-url:https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+## /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc +RTS -K512m -RTS Analysis.utf8.md --to html --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output Analysis.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /Library/Frameworks/R.framework/Versions/3.3/Resources/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /var/folders/df/2w6dv0r11pb69jhk8lzjjb_m0000gn/T//RtmpUJhxBR/rmarkdown-str3f087f8e984f.html --mathjax --variable 'mathjax-url:https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
 ```
 
 ```r

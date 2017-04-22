@@ -197,7 +197,6 @@ The variability in Temperature swings, as defined by maximum monthly temperature
 
 
 <img src="Analysis_files/figure-html/unnamed-chunk-9-1.png" style="float:left" /><img src="Analysis_files/figure-html/unnamed-chunk-9-2.png" style="float:left" />
-<br/>
 
-## Conclusion
+# Conclusion
 So in this case study we have covered some of the capabalites of R and what it can do for upcoming data sciencetists.  We have used the built in data set and showed some of the statistical capablities of R by calculating the mean and medain of different orange tree trunks.  We showed some of the ploting capabilities by showing a scatterplot and boxplot on the orange tree dataset.  We have also shown the capabilities or R to download and clean large data sets easily by finding the differnet max and min monthly average temperature for the top countries with the greatest swing in temperature.  Then we cut the dataset down nd add a new column using a formula, we plotted the new dataset based on yearly means with at basic plot function.  We used a loop to cut the smaller data set down to two year increments.  And finally we downloaded, cleaned , and manipulated the temperature max and mins for the top twenty cities with the highest greatest temperature swing and compared it graphically against the top twenty countries. As you can see R is a versitial tool to be in your toolbox as you move on in you data science career.
