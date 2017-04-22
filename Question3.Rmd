@@ -108,6 +108,43 @@ cat("CityTemp.csv was cleaned into CityTemp_clean.csv successfully!\n")
 
 
 ```
+### Data Manipulation for Question (ii)
+For this section we will be creating a subset of the data for US temperatures after 1990 and anserwing multiple questions subset of data we create.
+
+First we will create a Farhenheit column in the dataframe.
+```{r}
+df_UStemp <- subset(temp1900, Date >= as.Date("1990-01-01") & Country =="United States")
+df_UStemp[,4] <- df_UStemp$Temperature * 9/5 +32
+colnames(df_UStemp)[4] <- "Fahrenheit"
+head(df_UStemp)
+```
+Next we will take the new column and Calcualte the average land temperture by year and plot it with temperature on the y axis and years on the X axis.
+
+```{r}
+dates <- as.Date(df_UStemp$Date, "%d-%b-%y")
+years <- format(dates, "%Y")
+AnnualTemp<-tapply(df_UStemp$Fahrenheit, years, mean)
+numyears <- count(years)
+
+plot(numyears[,1], AnnualTemp)
+```
+
+Next we will divide the Temperature averages into two year increaments. ie 1990-1991, 1992-1993, 1994-1995, etc.
+
+```{r}
+j=1 #initialize dataframe row count
+control <- dim(AnnualTemp)  #initialize looplimit
+df_newtemp<- data.frame(0,0)  #initialize dataframe
+for (i in seq (1 , control, 2)){
+  df_newtemp[j,1] <- paste(as.character(numyears[i,1]),as.character(numyears[i+1,1]))
+	df_newtemp[j,2] = ((AnnualTemp[i] + AnnualTemp[i+1])/2)
+	j=j+1
+}
+colnames(df_newtemp)[1] <- "Years"
+colnames(df_newtemp)[2] <- "Average Temp"
+df_newtemp # print off dataframe
+```
+
 
 ###Data Manipulation for Question (iii)
 Manipulate and plot the top 20 differences between maximum and minimum temperatures for cities.
