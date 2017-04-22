@@ -9,9 +9,12 @@ As we are learning about Data Science we are building a tool box to help us in o
 ## Question 2 of the case study
 For our first example we will be using a built in data set called "Orange." Using the built in data set allows us to go straight to the analysis part of the problem.
 
-The first question we are going to answer is the mean and medians for the orange trees of different sizes.
+The first question we are going to answer is the mean and medians for the orange trees of different sizes. The table below shows mean and medians for every tree size.
 
 ```r
+library(plyr)
+library(ggplot2)
+
 # create a new data set with all the samme information as Orange
 data1 <- Orange  
 
@@ -40,7 +43,8 @@ Next we are going to show you some of the ways you can plot data.  We are first 
 
 
 ```r
-plot(data1$circumference, data1$age, xlab = "Circumference", ylab = "Age", pch = c(16,17,18))
+ggplot(data1, aes(x=circumference, y=age, col=Tree, shape=Tree)) + 
+geom_point(size=3)
 ```
 
 ![](Analysis_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
@@ -71,9 +75,6 @@ Manipulate and plot the top 20 differences between maximum and minimum temperatu
 
 ```r
 #Step 1. Build Data.Frame with rows from 1900-01-01 and greater.
-library(plyr)
-library(ggplot2)
-
 #Read clean data
 temp1900 <- read.csv(file.path('data', "TEMP_clean.csv"), colClasses=c("Date", 'numeric', 'character'), sep=',')
 
@@ -166,29 +167,26 @@ df_newtemp # print off dataframe
 ##City Temperature
 For the third part of question 3,  (iii), the goal is to find the difference between the maximum and the minimum monthly average temperatures for each city listed in the data set.  Then report/visualize top 20 cities with the maximum differences for the period since 1900.
 
-
 ###Data Manipulation for Question (iii)
 Manipulate and plot the top 20 differences between maximum and minimum temperatures for cities.
 
 
 ```r
+# read the cleaned dataset
 CityTemp1900 <- read.csv(file.path('data', "CityTemp_clean.csv"), colClasses=c("Date", 'numeric', 'character', 'character'), sep=',')
 
-#Change to character class to do string compare.
-#CityTemp1900$Date <- as.character(CityTemp1900$Date)
-#CityTemp1900 <- na.omit(CityTemp1900)
-#CityTemp1900 <- subset(CityTemp1900, Date >= as.character("1/1/1900"))
-
+# filter only dates over 1990
 CityTemp1900 <- subset(CityTemp1900, Date >= as.Date("1990-01-01"))
 
-#Start the plyr split-apply-combine with difference between city max and min Temperature. Compute the difference between maximum & minimum #Temperature and order the result.
+#Start the plyr split-apply-combine with difference between city max and min Temperature.
+dfCity_summarise <- ddply(CityTemp1900, .(City), summarise, temp_min = min(Temperature), temp_max = max(Temperature))
 
-dfCity_summarise <- ddply(CityTemp1900, .(City), summarise,
-                      temp_min = min(Temperature), temp_max = max(Temperature))
+# Compute the difference between maximum & minimum
 dfCity_summarise$difference <- c(dfCity_summarise$temp_max-dfCity_summarise$temp_min)
 
 #Order
 dfCity_ordered <- dfCity_summarise[order(-dfCity_summarise$difference),]
+
 #Skinny down data frame to only what needs to be plotted
 dfCity_skinny<- dfCity_ordered[1:20,c(1,4)]
 ```
@@ -198,9 +196,8 @@ dfCity_skinny<- dfCity_ordered[1:20,c(1,4)]
 The variability in Temperature swings, as defined by maximum monthly temperature - minimum monthly temperature, is not as large as one would think.  In the top 20 Countries and Cities with the largest swings since 1900, the variability ranges between 31 and 49 degrees.  For City, in which 50% of the Cities are in China, their is an 18.04 degree average difference.  China, with an average temperature difference of 32.255, did not make the top 20 Countries with the largest difference.  For Country, there is a 13.89 degree difference between the average min and max.  All of the top 20 Countries are located in the northern part of the Northern Hemisphere, with Tajikistan being the southern most Country.  There seems to be a line of further research around temperature change in the northern most Countries of our world and Cities in China.
 
 
-<img src="Analysis_files/figure-html/unnamed-chunk-9-1.png" style="float:left" />
+<img src="Analysis_files/figure-html/unnamed-chunk-9-1.png" style="float:left" /><img src="Analysis_files/figure-html/unnamed-chunk-9-2.png" style="float:left" />
+<br/>
 
-<img src="Analysis_files/figure-html/unnamed-chunk-10-1.png" style="float:left" />
-
-##Conclusion
+## Conclusion
 So in this case study we have covered some of the capabalites of R and what it can do for upcoming data sciencetists.  We have used the built in data set and showed some of the statistical capablities of R by calculating the mean and medain of different orange tree trunks.  We showed some of the ploting capabilities by showing a scatterplot and boxplot on the orange tree dataset.  We have also shown the capabilities or R to download and clean large data sets easily by finding the differnet max and min monthly average temperature for the top countries with the greatest swing in temperature.  Then we cut the dataset down nd add a new column using a formula, we plotted the new dataset based on yearly means with at basic plot function.  We used a loop to cut the smaller data set down to two year increments.  And finally we downloaded, cleaned , and manipulated the temperature max and mins for the top twenty cities with the highest greatest temperature swing and compared it graphically against the top twenty countries. As you can see R is a versitial tool to be in your toolbox as you move on in you data science career.

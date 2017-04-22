@@ -22,7 +22,6 @@ for (needed_package in needed_packages) {
   }
 }
 ```
-
 ## Download
 This taks is used for downloading of all data files, in this case happen to be in .csv format.
 The files are downloaded from their original locations as given by the assignment.

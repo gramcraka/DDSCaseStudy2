@@ -16,6 +16,9 @@ For our first example we will be using a built in data set called "Orange." Usin
 
 The first question we are going to answer is the mean and medians for the orange trees of different sizes. The table below shows mean and medians for every tree size.
 ```{r}
+library(plyr)
+library(ggplot2)
+
 # create a new data set with all the samme information as Orange
 data1 <- Orange  
 
@@ -60,9 +63,6 @@ Manipulate and plot the top 20 differences between maximum and minimum temperatu
 
 ```{r}
 #Step 1. Build Data.Frame with rows from 1900-01-01 and greater.
-library(plyr)
-library(ggplot2)
-
 #Read clean data
 temp1900 <- read.csv(file.path('data', "TEMP_clean.csv"), colClasses=c("Date", 'numeric', 'character'), sep=',')
 
@@ -124,7 +124,6 @@ df_newtemp # print off dataframe
 ##City Temperature
 For the third part of question 3,  (iii), the goal is to find the difference between the maximum and the minimum monthly average temperatures for each city listed in the data set.  Then report/visualize top 20 cities with the maximum differences for the period since 1900.
 
-
 ###Data Manipulation for Question (iii)
 Manipulate and plot the top 20 differences between maximum and minimum temperatures for cities.
 
@@ -153,8 +152,7 @@ dfCity_skinny<- dfCity_ordered[1:20,c(1,4)]
 The variability in Temperature swings, as defined by maximum monthly temperature - minimum monthly temperature, is not as large as one would think.  In the top 20 Countries and Cities with the largest swings since 1900, the variability ranges between 31 and 49 degrees.  For City, in which 50% of the Cities are in China, their is an 18.04 degree average difference.  China, with an average temperature difference of 32.255, did not make the top 20 Countries with the largest difference.  For Country, there is a 13.89 degree difference between the average min and max.  All of the top 20 Countries are located in the northern part of the Northern Hemisphere, with Tajikistan being the southern most Country.  There seems to be a line of further research around temperature change in the northern most Countries of our world and Cities in China.
 
 
-```{r echo=FALSE, fig.height=5, fig.width=3.5, fig.show='hold'}
-#plot
+```{r echo=FALSE, fig.height=5, fig.width=4, fig.show='hold', out.extra='style="float:left"'}
 ggplot(data = df_skinny, aes(x=Country, y=difference, fill=factor(difference))) +
      geom_bar(position="dodge",stat="identity") +
      geom_col(position = "stack", show.legend = FALSE, inherit.aes = TRUE) +
@@ -165,10 +163,7 @@ ggplot(data = df_skinny, aes(x=Country, y=difference, fill=factor(difference))) 
      scale_fill_grey() +
      theme(aspect.ratio = 2/1) +
      theme(legend.position="none")
-```
 
-```{r echo=FALSE, fig.height=5, fig.width=3.5, fig.show='hold'}
-#plot
 ggplot(data = dfCity_skinny, aes(x=City, y=difference, fill=factor(difference))) +
   geom_bar(position="dodge",stat="identity") +
   geom_col(position = "stack", show.legend = FALSE, inherit.aes = TRUE) +
@@ -182,5 +177,5 @@ ggplot(data = dfCity_skinny, aes(x=City, y=difference, fill=factor(difference)))
 
 ```
 
-##Conclusion
+# Conclusion
 So in this case study we have covered some of the capabalites of R and what it can do for upcoming data sciencetists.  We have used the built in data set and showed some of the statistical capablities of R by calculating the mean and medain of different orange tree trunks.  We showed some of the ploting capabilities by showing a scatterplot and boxplot on the orange tree dataset.  We have also shown the capabilities or R to download and clean large data sets easily by finding the differnet max and min monthly average temperature for the top countries with the greatest swing in temperature.  Then we cut the dataset down nd add a new column using a formula, we plotted the new dataset based on yearly means with at basic plot function.  We used a loop to cut the smaller data set down to two year increments.  And finally we downloaded, cleaned , and manipulated the temperature max and mins for the top twenty cities with the highest greatest temperature swing and compared it graphically against the top twenty countries. As you can see R is a versitial tool to be in your toolbox as you move on in you data science career.
