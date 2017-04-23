@@ -4,12 +4,17 @@ Ivelin Angelov, Laura Bishop, Ethan Graham, Scott Gozdzialski
 
 
 ## Introduction
-As we are learning about Data Science we are building a tool box to help us in our careers.  Each of these tools have differenct uses.  Some are for analysis of the data, ie. ANOVA, t-test, and linear regressions to name a few.  Some are to visualize the data and its characteristics, ie. Scatterplots, box plot, and histograms to name a few.  Some are to get to and clean the data, Python, r, and SAS are a few of these tools.  This study will be focusing on the R programming language and what is can do for us in our careers as data scientists.
+This analysis uses several statistical tools to find the relationship between the age of orange trees and their average circumference, as well as look into the monthly average temperatures cities and land areas.
+Each statistical tool has differenct uses.
+Some are for analysis of the data, ie. ANOVA, t-test, and linear regressions.
+Some are to visualize the data and its characteristics, ie. Scatterplots, box plot, and histograms.
+Some are to get to and clean the data, Python, R, and SAS are a few of these tools.
+This study is done using R.
 
 ## Question 2 of the case study
-For our first example we will be using a built in data set called "Orange." Using the built in data set allows us to go straight to the analysis part of the problem.
+Using the "Orange" data set built in to R allows for fast and easy analysis of the data.
 
-The first question we are going to answer is the mean and medians for the orange trees of different sizes. The table below shows mean and medians for every tree size.
+The table below shows mean and medians of trunk circumference for every tree size.
 
 ```r
 library(plyr)
@@ -39,7 +44,9 @@ cbind(Tree_Size = unique(data1$Tree),do.call(rbind, tapply(data1$circumference, 
 ## 5         5 111.14286    125
 ```
 
-Next we are going to show you some of the ways you can plot data.  We are first going to create a scatterplot of the tree cirumferance against its age with different symbols for differnt size trees.
+These data can be plotted using R and ggplot.
+The following is a scatterplot of the tree cirumferance vs tree age.
+Different symbols represent different size trees.
 
 
 ```r
@@ -49,25 +56,26 @@ geom_point(size=3)
 
 ![](Analysis_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
-And the next plot is a boxplot or whiskerplot, but to make things more difficult programming wise we are going to order the plots in increasing order of maximum diameter. 
+The following is a group of boxplots, also called a whiskerplots, with the plots in increasing order of maximum tree diameter.
 
 ```r
 #Reorder the Tree size factor to 3, 1, 5, 2, 4
 data1$Tree <- factor(data1$Tree, levels(data1$Tree)[c(3,1,5,2,4)])
 
 #plot the temp data set circumference vs Tree
-boxplot(circumference ~ Tree, data = data1)
+boxplot(circumference ~ Tree, data = data1, xlab = "Tree number", ylab = "Trunk Circumference (mm)") 
 ```
 
 ![](Analysis_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
-## Question 3 will be dealing with maximum and minimum monthly average temperatures 
-
+## Question 3 
 The main lesson around the Temperature data is manipulating a big data set, date format manipulation, and the split-apply-combine across the data set.
 
 ## Country Temperature
-For the first part of question 3 (i), the goal is to find the difference between the maximum and the minimum monthly average 
-temperatures for each country.  Then report/visualize top 20 countries with the maximum differences for the period since 1900.  We will slpit this up into different pieces.  The Data is already downloaded so we will be cleaning the data and manipulating the data to get it into a format we can use later at the end of this question.
+For the first part of question 3 (i), the goal is to find the difference between the maximum and the minimum monthly average temperatures for each country.
+Then report/visualize top 20 countries with the maximum differences for the period since the year 1900.
+The Data is already downloaded to the local R environment, but it must be cleaned.
+Cleaning these data consists of manipulating the data into a usable format for easier analysis.
 
 ###Data Manipulation for Question 3 (i)
 Manipulate and plot the top 20 differences between maximum and minimum temperatures for countries.
@@ -92,12 +100,13 @@ df_ordered <- df_summarise[order(-df_summarise$difference),]
 df_skinny<- df_ordered[1:20,c(1,4)]
 ```
 
-As a break from the first part we will be looking at some specific tools and techniques for manipulating the data in part ii.
-
 ### Data Manipulation for Question (ii)
-For this section we will be creating a subset of the data for US temperatures after 1990 and answering multiple questions subset of data we create. We will be seperating the data and adding a row to the dataframe using a formula. Then we will use basic plotting capablities in R to plot the data.  Finally in section ii, we will use a loop to condense the data to a different format.
+This section focuses on creating a subset of the data for US temperatures after January 1st, 1990 and answering multiple questions in regards to the subset.
+The data must be seperated and a row added to the dataframe using a formula.
+The result can be confirmed ising basic plotting capablities in R to plot the data.
+In section ii, the loop functionality in R is used to condense the data to a different format.
 
-First we will create a Farhenheit column in the dataframe using a formula for converting Celsuis to Farhenheit.
+A Farhenheit column in the dataframe is created using a formula for converting Celsuis to Farhenheit.
 
 ```r
 df_UStemp <- subset(temp1900, Date >= as.Date("1990-01-01") & Country =="United States")
@@ -116,7 +125,7 @@ head(df_UStemp)
 ## 523208 1990-01-06      19.780 United States    67.6040
 ```
 
-Next we will take the new column and Calculate the average land temperture by year, and plot it with temperature on the y axis and years on the X axis.
+Take the new column and Calculate the average land temperture by year, and plot it with temperature on the y axis and years on the X axis.
 
 
 ```r
@@ -125,12 +134,12 @@ years <- format(dates, "%Y")
 AnnualTemp<-tapply(df_UStemp$Fahrenheit, years, mean)
 numyears <- count(years)
 
-plot(numyears[,1], AnnualTemp)
+plot(numyears[,1], AnnualTemp, xlab="Year", ylab="Annual Temp")
 ```
 
 ![](Analysis_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
-Finally we will divide the Temperature averages into two year increaments using a looping function. ie 1990-1991, 1992-1993, 1994-1995, etc.
+Divide the Temperature averages into two year increaments using a looping function: 1990-1991, 1992-1993, 1994-1995, etc.
 
 
 ```r
@@ -165,7 +174,8 @@ df_newtemp # print off dataframe
 
 
 ##City Temperature
-For the third part of question 3,  (iii), the goal is to find the difference between the maximum and the minimum monthly average temperatures for each city listed in the data set.  Then report/visualize top 20 cities with the maximum differences for the period since 1900.
+For the third part of question 3,  (iii), the goal is to find the difference between the maximum and the minimum monthly average temperatures for each city listed in the data set.
+Then report/visualize top 20 cities with the maximum differences for the period since 1900.
 
 ###Data Manipulation for Question (iii)
 Manipulate and plot the top 20 differences between maximum and minimum temperatures for cities.
@@ -193,7 +203,13 @@ dfCity_skinny<- dfCity_ordered[1:20,c(1,4)]
 
 #Analysis of the Country and City Plots
 ## The Top 20 City & Country Temperature Swings
-The variability in Temperature swings, as defined by maximum monthly temperature - minimum monthly temperature, is not as large as one would think.  In the top 20 Countries and Cities with the largest swings since 1900, the variability ranges between 31 and 49 degrees.  For City, in which 50% of the Cities are in China, their is an 18.04 degree average difference.  China, with an average temperature difference of 32.255, did not make the top 20 Countries with the largest difference.  For Country, there is a 13.89 degree difference between the average min and max.  All of the top 20 Countries are located in the northern part of the Northern Hemisphere, with Tajikistan being the southern most Country.  There seems to be a line of further research around temperature change in the northern most Countries of our world and Cities in China.
+The variability in Temperature swings, as defined by maximum monthly temperature - minimum monthly temperature, is not as large as one would think.
+In the top 20 Countries and Cities with the largest swings since 1900, the variability ranges between 31 and 49 degrees.
+For City, in which 50% of the Cities are in China, their is an 18.04 degree average difference.
+China, with an average temperature difference of 32.255, did not make the top 20 Countries with the largest difference.
+For Country, there is a 13.89 degree difference between the average min and max.
+All of the top 20 Countries are located in the northern part of the Northern Hemisphere, with Tajikistan being the southern most Country.
+There seems to be a line of further research around temperature change in the northern most Countries of our world and Cities in China.
 
 
 <img src="Analysis_files/figure-html/unnamed-chunk-9-1.png" style="float:left" /><img src="Analysis_files/figure-html/unnamed-chunk-9-2.png" style="float:left" />
